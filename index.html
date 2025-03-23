@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drone Control</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="images/csir-neeri-logo.png" alt="CSIR-NEERI Logo">
+            <h1>CSIR-NEERI</h1>
+        </div>
+    </header>
+    
+    <h2 class="main-heading">Drone Control System</h2>
+    
+    <main>
+        <div class="status-box">
+            <p>
+                <img src="images/wifi-disconnected.jpg" class="wifi-icon" id="wifi-icon" alt="Wi-Fi status">
+                <span id="connection-status" class="disconnected">Disconnected</span>
+            </p>
+            <button class="connect-btn" onclick="connectESP32()">Connect</button>
+        </div>
+        
+        <div class="controls">
+            <div class="switch-container">
+                <h3>Power On/Off</h3>
+                <label class="switch">
+                    <input type="checkbox" id="power-toggle" onclick="togglePower()">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            
+            <div class="switch-container">
+                <h3>Auto Mode</h3>
+                <label class="switch">
+                    <input type="checkbox" id="auto-mode-toggle" onclick="setMode('auto')">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            
+            <div class="switch-container">
+                <h3>Manual Mode</h3>
+                <label class="switch">
+                    <input type="checkbox" id="manual-mode-toggle" onclick="setMode('manual')">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            
+            <div class="pressure-control">
+                <h3>Pressure Control</h3>
+                <div class="jet-spray">
+                    <h3>Jet Spray</h3>
+                    <label class="switch">
+                        <input type="checkbox" id="jet-spray-toggle" onclick="toggleJetSpray()">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <div class="pressure-buttons">
+                    <button class="pressure-btn" onclick="setPressure('low')">Low</button>
+                    <button class="pressure-btn" onclick="setPressure('medium')">Medium</button>
+                    <button class="pressure-btn" onclick="setPressure('high')">High</button>
+                </div>
+                <div class="pressure-adjust">
+                    <button onclick="adjustPressure(-1)">-</button>
+                    <span id="pressure-level">50%</span>
+                    <button onclick="adjustPressure(1)">+</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="drone-status">
+            <h3>Drone Control</h3>
+            <div class="status-info">
+                <p>Status: <span id="drone-status">Landed</span></p>
+                <p>Altitude: <span id="altitude">0m</span></p>
+            </div>
+        </div>
+        
+        <div class="joystick-container">
+            <button class="control-button up" onclick="moveDrone('up')" aria-label="Move Up">▲</button>
+            <div class="joystick-row">
+                <button class="control-button left" onclick="moveDrone('left')" aria-label="Move Left">◀</button>
+                <button class="control-button center" onclick="moveDrone('center')" aria-label="Center Drone">🚁</button>
+                <button class="control-button right" onclick="moveDrone('right')" aria-label="Move Right">▶</button>
+            </div>
+            <button class="control-button down" onclick="moveDrone('down')" aria-label="Move Down">▼</button>
+        </div>
+    </main>
+</body>
+</html>
